@@ -47,6 +47,29 @@ public abstract class ViewAdapter {
     }
 
     /**
+     * init this.
+     *
+     * @param context of application
+     */
+    protected ViewAdapter(Context context, Runnable runnable) {
+        this.mContext = context;
+        runnable.run();
+        this.onCreate();
+        this.mView = this.onCreateView(LayoutInflater.from(context));
+        this.mContext = this.mView.getContext();
+        this.mView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+            @Override
+            public void onViewAttachedToWindow(View view) {
+                ViewAdapter.this.onAttach(view);
+            }
+            @Override
+            public void onViewDetachedFromWindow(View view) {
+                ViewAdapter.this.onDetach(view);
+            }
+        });
+    }
+
+    /**
      * get the context.
      *
      * @return the context of the adapted view
