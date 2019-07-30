@@ -29,31 +29,8 @@ public abstract class ViewAdapter {
      *
      * @param context of application
      */
-    public ViewAdapter(Context context) {
+    public void init(Context context){
         this.mContext = context;
-        this.onCreate();
-        this.mView = this.onCreateView(LayoutInflater.from(context));
-        this.mContext = this.mView.getContext();
-        this.mView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-            @Override
-            public void onViewAttachedToWindow(View view) {
-                ViewAdapter.this.onAttach(view);
-            }
-            @Override
-            public void onViewDetachedFromWindow(View view) {
-                ViewAdapter.this.onDetach(view);
-            }
-        });
-    }
-
-    /**
-     * init this.
-     *
-     * @param context of application
-     */
-    protected ViewAdapter(Context context, Runnable runnable) {
-        this.mContext = context;
-        runnable.run();
         this.onCreate();
         this.mView = this.onCreateView(LayoutInflater.from(context));
         this.mContext = this.mView.getContext();
@@ -111,11 +88,15 @@ public abstract class ViewAdapter {
      * @param inflater to inflate the view with
      * @return a view to be adapted.
      */
-    public abstract View onCreateView(LayoutInflater inflater);
+    public View onCreateView(LayoutInflater inflater){
+        return null;
+    }
 
     /**
      * this get called after initializing and before {@link #onCreateView(LayoutInflater)}.
      */
-    public abstract void onCreate();
+    public void onCreate(){
+
+    }
 
 }
