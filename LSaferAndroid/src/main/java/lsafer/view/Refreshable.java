@@ -1,4 +1,4 @@
-package lsafer.util;
+package lsafer.view;
 
 /**
  * defines that the {@link android.view.View view} that implements this

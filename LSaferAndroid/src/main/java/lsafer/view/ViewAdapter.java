@@ -1,4 +1,4 @@
-package lsafer.util;
+package lsafer.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
