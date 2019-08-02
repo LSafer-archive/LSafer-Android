@@ -26,7 +26,7 @@ android {
 }
 
 dependencies {
-    compileOnly 'com.github.LSaferSE:LSafer:1.0.4-alpha9'
+    compileOnly 'com.github.LSaferSE:LSafer:1.0.4-beta1'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
