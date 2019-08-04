@@ -26,19 +26,25 @@ final public class AndroidReflect {
     public static <TYPE> Class<TYPE> getClass(Context context, String name, String path) {
         //get a class from the classes map or apply a function
         //that well generate the class case not have been loaded already
-        return (Class<TYPE>) Reflect.getClass(name, (n1) -> {
-            try {
-                //get a class loader from the class loaders map or apply a function
-                        //that well generate the class loader case not have been generated already
-                return Reflect.getClassLoader(path, (n2) ->
-                        new DexClassLoader(path, context.getCodeCacheDir().getAbsolutePath(),
-                                null, context.getClassLoader())
-                ).loadClass(name);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-                return null;
-            }
-        });
+        try {
+            return path == null || path.equals("") ? (Class<TYPE>) Class.forName(name) : (Class<TYPE>) Reflect.getClass(name, (n1) -> {
+                try {
+                    //get a class loader from the class loaders map or apply a function
+                            //that well generate the class loader case not have been generated already
+                    return Reflect.getClassLoader(path, (n2) ->
+                            new DexClassLoader(path, context.getCodeCacheDir().getAbsolutePath(),
+                                    null, context.getClassLoader())
+                    ).loadClass(name);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            });
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }
