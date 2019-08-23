@@ -11,6 +11,7 @@ import dalvik.system.DexClassLoader;
  * @version 1
  * @since 14-Jul-19
  */
+@Deprecated
 final public class AndroidReflect {
 
     /**

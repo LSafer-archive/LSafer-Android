@@ -26,12 +26,49 @@ android {
 }
 
 dependencies {
-    compileOnly 'com.github.LSaferSE:LSafer:1.0.4-beta1'
+//    compileOnly 'com.github.LSaferSE:LSafer:1.0.4-beta1'
 
+    compileOnly internal('aunionx.libraries.LSaferSE:LSafer@jar')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+ConfigurableFileCollection internal(String location){
+    location = '/' + location.replace(':', '/').replace('.', '/').replace('@', '.')
+    String[] split = location.split '/'
+    String name = split[split.length-1]
+
+    InputStream input
+    OutputStream output
+    try {
+        File target = new File(getProjectDir().toString() + "\\" + name)
+
+        if (target.exists() && !target.delete())
+            throw new IllegalStateException("can't delete ( " + target.toString() + " )")
+
+        input = new FileInputStream(new File(location))
+        output = new FileOutputStream(target)
+
+        final byte[] buffer = new byte[1024] // transaction buffer
+
+        while (true) {
+            int point = input.read(buffer) //reading next package find original mFile
+            if (point < 1) break //break the loop case empty
+            output.write(buffer, 0, point) //write at the destiny
+        }
+
+    } catch (Exception e) {
+        println("\nError while implementing"+ location.toString() + "("+ e + ")")
+    } finally {
+        if (input != null)
+            input.close()
+        if (output != null)
+            output.close()
+    }
+
+    return files(name)
 }
