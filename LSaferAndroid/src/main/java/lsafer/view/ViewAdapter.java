@@ -3,51 +3,44 @@ package lsafer.view;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 /**
- * view adapter.
+ * View adapter interface.
  *
  * @author LSaferSE
- * @version 1 alpha (29-Jul-19)
+ * @version 2 alpha (06-Sep-19)
  * @since 29-Jul-19
  */
 @SuppressWarnings({"WeakerAccess"})
 public abstract class ViewAdapter {
 
     /**
-     * adapted view.
+     * The adapted view.
      */
     private View mView;
 
     /**
-     * application context.
+     * Application context.
      */
     private Context mContext;
 
     /**
-     * init this.
+     * Initialize this.
      *
      * @param context of application
+     * @param parent to be attached to
      */
-    public void init(Context context){
+    final public void initialize(Context context, ViewGroup parent) {
         this.mContext = context;
         this.onCreate();
-        this.mView = this.onCreateView(LayoutInflater.from(context));
+        this.mView = this.onCreateView(LayoutInflater.from(context), parent);
         this.mContext = this.mView.getContext();
-        this.mView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-            @Override
-            public void onViewAttachedToWindow(View view) {
-                ViewAdapter.this.onAttach(view);
-            }
-            @Override
-            public void onViewDetachedFromWindow(View view) {
-                ViewAdapter.this.onDetach(view);
-            }
-        });
+        this.onCreated();
     }
 
     /**
-     * get the context.
+     * Get the context that have been stored in this.
      *
      * @return the context of the adapted view
      */
@@ -56,7 +49,7 @@ public abstract class ViewAdapter {
     }
 
     /**
-     * get the adapted view.
+     * Get the adapted view.
      *
      * @return the adapted view
      */
@@ -65,38 +58,23 @@ public abstract class ViewAdapter {
     }
 
     /**
-     * get called each time this view get attached to another view.
-     *
-     * @param parent view that this view get attached to
-     */
-    public void onAttach(View parent){
-
-    }
-
-    /**
-     * get called each time this view get detached from another view.
-     *
-     * @param parent view that this view get detached from
-     */
-    public void onDetach(View parent){
-
-    }
-
-    /**
-     * create the view to start adapt.
+     * Create the view to start adapt.
      *
      * @param inflater to inflate the view with
+     * @param parent that have been passed in {@link #initialize(Context, ViewGroup)}
      * @return a view to be adapted.
      */
-    public View onCreateView(LayoutInflater inflater){
-        return null;
+    public abstract View onCreateView(LayoutInflater inflater, ViewGroup parent);
+
+    /**
+     * This method get called before {@link #onCreateView(LayoutInflater, ViewGroup)}.
+     */
+    public void onCreate(){
     }
 
     /**
-     * this get called after initializing and before {@link #onCreateView(LayoutInflater)}.
+     * This method get called after the end of initializing this.
      */
-    public void onCreate(){
-
+    public void onCreated() {
     }
-
 }

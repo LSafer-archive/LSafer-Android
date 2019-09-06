@@ -1,16 +1,15 @@
 package lsafer.view;
 
 /**
- * defines that the {@link android.view.View view} that implements this
- * can be refreshed with it's data.
+ * Defines that the {@link android.view.View view} that implements this. Can be refreshed with it's data.
  *
  * @author LSaferSE
- * @version 1 alpha (30-Jul-19)
+ * @version 2 alpha (06-Sep-19)
  * @since 30-Jul-19
  */
 public interface Refreshable {
     /**
-     * refresh view with the new data.
+     * Refresh view with the new data.
      */
     void refresh();
 }
