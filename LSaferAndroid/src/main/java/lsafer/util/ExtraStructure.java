@@ -17,6 +17,7 @@ import java.util.function.Consumer;
  * @version 2 alpha (06-Sep-19)
  * @since 16-Aug-19
  */
+@SuppressWarnings("unused")
 public interface ExtraStructure extends Structure {
 
     /**

@@ -7,6 +7,7 @@ package lsafer.view;
  * @version 2 alpha (06-Sep-19)
  * @since 30-Jul-19
  */
+@SuppressWarnings("unused")
 public interface Refreshable {
     /**
      * Refresh view with the new data.

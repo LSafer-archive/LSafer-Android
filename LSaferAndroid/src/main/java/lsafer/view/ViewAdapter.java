@@ -12,7 +12,7 @@ import android.view.ViewGroup;
  * @version 2 alpha (06-Sep-19)
  * @since 29-Jul-19
  */
-@SuppressWarnings({"WeakerAccess"})
+@SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class ViewAdapter {
 
     /**
