@@ -21,12 +21,12 @@
 	<color name="kroovLightColorSilkDark">#989898</color>
 	<color name="kroovLightColorCounter">#141414</color>
 	
-	<color name="kroovTransparentBlack">#5E000000</color>
-	<color name="kroovTransparentWhite">#5Effffff</color>
+	<color name="kroovColorTransparentDark">#5E000000</color>
+	<color name="kroovColorTransparentWhite">#5Effffff</color>
 	
-	<color name="kroovTriggered">#B2B71C1C</color>
-	<color name="kroovGood">#B2004D40</color>
+	<color name="kroovColorTriggered">#B2B71C1C</color>
+	<color name="kroovColorGood">#B2004D40</color>
 	
-	<color name="debugPink">#BF00FF</color>
-	<color name="debugYellow">#FFEB3B</color>
+	<color name="debugColorPink">#BF00FF</color>
+	<color name="debugColorYellow">#FFEB3B</color>
 </resources>
