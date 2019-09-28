@@ -1,6 +1,6 @@
 <resources>
-	<style name="KroovBlackAppTheme"
-	       parent="Theme.AppCompat.NoActionBar">
+	
+	<style name="KroovBlackAppTheme" parent="Theme.AppCompat.NoActionBar">
 		<item name="colorPrimary">@color/kroovBlackColorPrimary</item>
 		<item name="colorPrimaryDark">@color/kroovBlackColorPrimaryDark</item>
 		<item name="colorAccent">@color/kroovBlackColorAccent</item>
@@ -9,8 +9,7 @@
 		<item name="colorKroovCounter">@color/kroovBlackColorCounter</item>
 	</style>
 	
-	<style name="KroovLightAppTheme"
-	       parent="Theme.AppCompat.Light.NoActionBar">
+	<style name="KroovLightAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorPrimary">@color/kroovLightColorPrimary</item>
 		<item name="colorPrimaryDark">@color/kroovLightColorPrimaryDark</item>
 		<item name="colorAccent">@color/kroovLightColorAccent</item>
@@ -19,8 +18,7 @@
 		<item name="colorKroovCounter">@color/kroovLightColorCounter</item>
 	</style>
 	
-	<style name="KroovAlertDialogTheme"
-	       parent="Theme.AppCompat.Dialog">
+	<style name="KroovAlertDialogTheme" parent="Theme.AppCompat.Dialog">
 		<item name="android:windowBackground">@drawable/kroov_round_primary</item>
 		<!--<item name="android:paddingStart">10dp</item>-->
 		<!--<item name="android:paddingEnd">10dp</item>-->

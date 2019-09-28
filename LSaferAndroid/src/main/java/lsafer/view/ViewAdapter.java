@@ -14,67 +14,66 @@ import android.view.ViewGroup;
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class ViewAdapter {
+	/**
+	 * Application context.
+	 */
+	private Context mContext;
 
-    /**
-     * The adapted view.
-     */
-    private View mView;
+	/**
+	 * The adapted view.
+	 */
+	private View mView;
 
-    /**
-     * Application context.
-     */
-    private Context mContext;
+	/**
+	 * Get the context that have been stored in this.
+	 *
+	 * @return the context of the adapted view
+	 */
+	public Context getContext() {
+		return this.mContext;
+	}
 
-    /**
-     * Initialize this.
-     *
-     * @param context of application
-     * @param parent to be attached to
-     */
-    final public void initialize(Context context, ViewGroup parent) {
-        this.mContext = context;
-        this.onCreate();
-        this.mView = this.onCreateView(LayoutInflater.from(context), parent);
-        this.mContext = this.mView.getContext();
-        this.onCreated();
-    }
+	/**
+	 * Get the adapted view.
+	 *
+	 * @return the adapted view
+	 */
+	public View getView() {
+		return this.mView;
+	}
 
-    /**
-     * Get the context that have been stored in this.
-     *
-     * @return the context of the adapted view
-     */
-    public Context getContext() {
-        return this.mContext;
-    }
+	/**
+	 * Initialize this.
+	 *
+	 * @param context of application
+	 * @param parent  to be attached to
+	 */
+	final public void initialize(Context context, ViewGroup parent) {
+		this.mContext = context;
+		this.onCreate();
+		this.mView = this.onCreateView(LayoutInflater.from(context), parent);
+		this.mContext = this.mView.getContext();
+		this.onCreated();
+	}
 
-    /**
-     * Get the adapted view.
-     *
-     * @return the adapted view
-     */
-    public View getView() {
-        return this.mView;
-    }
+	/**
+	 * This method get called before {@link #onCreateView(LayoutInflater, ViewGroup)}.
+	 */
+	public void onCreate() {
+	}
 
-    /**
-     * Create the view to start adapt.
-     *
-     * @param inflater to inflate the view with
-     * @param parent that have been passed in {@link #initialize(Context, ViewGroup)}
-     * @return a view to be adapted.
-     */
-    public abstract View onCreateView(LayoutInflater inflater, ViewGroup parent);
+	/**
+	 * This method get called after the end of initializing this.
+	 */
+	public void onCreated() {
+	}
 
-    /**
-     * This method get called before {@link #onCreateView(LayoutInflater, ViewGroup)}.
-     */
-    public void onCreate(){
-    }
-
-    /**
-     * This method get called after the end of initializing this.
-     */
-    public void onCreated() {
-    }
+	/**
+	 * Create the view to start adapt.
+	 *
+	 * @param inflater to inflate the view with
+	 * @param parent   that have been passed in {@link #initialize(Context, ViewGroup)}
+	 * @return a view to be adapted.
+	 */
+	public abstract View onCreateView(LayoutInflater inflater, ViewGroup parent);
 }

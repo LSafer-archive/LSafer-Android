@@ -9,8 +9,8 @@ package lsafer.view;
  */
 @SuppressWarnings("unused")
 public interface Refreshable {
-    /**
-     * Refresh view with the new data.
-     */
-    void refresh();
+	/**
+	 * Refresh view with the new data.
+	 */
+	void refresh();
 }
