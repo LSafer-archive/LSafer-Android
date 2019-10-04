@@ -27,7 +27,7 @@ android {
 
 dependencies {
 //    compileOnly internal('aunionx.libraries.LSaferSE:LSafer@jar') //needed | see https://www.github.com/LSaferSE/LSafer/
-    compileOnly 'com.github.LSaferSE:LSafer:1.2.0'
+    compileOnly 'com.github.LSaferSE:LSafer:1.2.1'
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     testImplementation 'junit:junit:4.12'
