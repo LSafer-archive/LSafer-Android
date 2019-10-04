@@ -37,7 +37,7 @@ public abstract class IOAppCompatActivity<R, K, V> extends AppCompatActivity imp
 	/**
 	 * The secondary container.
 	 */
-	private transient Map<K, Entry<K, V>> entries = new HashMap<>();
+	private transient Map<K, JSObject.Entry<K, V>> entries = new HashMap<>();
 
 	/**
 	 * The 3rd IO-container's remote.
