@@ -1,5 +1,4 @@
 <resources>
-	
 	<style name="KroovBlackAppTheme" parent="Theme.AppCompat.NoActionBar">
 		<item name="colorPrimary">@color/kroovBlackColorPrimary</item>
 		<item name="colorPrimaryDark">@color/kroovBlackColorPrimaryDark</item>
@@ -26,7 +25,7 @@
 	</style>
 	
 	<style name="kroov_titlex">
-		<item name="android:fontFamily">serif-monospace</item>
+		<item name="android:fontFamily">serif</item>
 		<item name="android:textSize">25sp</item>
 		<!--<item name="android:gravity">center</item>-->
 		<item name="android:paddingTop">15dp</item>
@@ -71,7 +70,6 @@
 	</style>
 	
 	<style name="kroov_quarter">
-		<item name="android:fontFamily">monospace</item>
 		<item name="android:background">@null</item>
 		<item name="android:gravity">center</item>
 		<item name="android:layout_margin">5dp</item>
@@ -86,7 +84,6 @@
 		<item name="android:layout_marginTop">2dp</item>
 		<item name="android:layout_marginBottom">2dp</item>
 		<item name="android:textSize">17sp</item>
-		<item name="android:fontFamily">monospace</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_width">match_parent</item>
 	</style>
@@ -94,7 +91,7 @@
 	<style name="kroov_description">
 		<item name="android:layout_marginStart">7dp</item>
 		<item name="android:textSize">13sp</item>
-		<item name="android:fontFamily">serif-monospace</item>
+		<item name="android:fontFamily">serif</item>
 		<item name="android:textColor">?colorPrimary</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -103,7 +100,7 @@
 	<style name="kroov_details">
 		<item name="android:layout_marginStart">7dp</item>
 		<item name="android:textSize">13sp</item>
-		<item name="android:fontFamily">serif-monospace</item>
+		<item name="android:fontFamily">serif</item>
 		<item name="android:textColor">?attr/colorKroovCounter</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -111,14 +108,13 @@
 	
 	<style name="kroov_feather">
 		<item name="android:textSize">15sp</item>
-		<item name="android:fontFamily">serif-monospace</item>
+		<item name="android:fontFamily">serif</item>
 		<item name="android:textColor">?android:colorAccent</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 	</style>
 	
 	<style name="kroov_separator">
-		<item name="android:fontFamily">monospace</item>
 		<item name="android:layout_marginTop">10dp</item>
 		<item name="android:gravity">start</item>
 		<item name="android:textSize">13sp</item>
@@ -143,7 +139,7 @@
 	</style>
 	
 	<style name="kroov_title">
-		<item name="android:fontFamily">serif-monospace</item>
+		<item name="android:fontFamily">serif</item>
 		<item name="android:textSize">25sp</item>
 		<!--<item name="android:gravity">center</item>-->
 		<item name="android:paddingTop">5dp</item>
