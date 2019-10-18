@@ -82,10 +82,13 @@ public abstract class ViewAdapter {
 	 * Set a random id for the given view.
 	 *
 	 * @param view to have a new id
+	 * @param <V> the type of the given view
+	 * @return the same view that have been given
 	 */
-	public void randomId(View view) {
+	public <V extends View> V randomId(V view) {
 		View adapted = this.getView();
 		view.setId(view.getId() + (adapted == null ? 0 : adapted.getId()) + this.hashCode());
+		return view;
 	}
 
 	/**
