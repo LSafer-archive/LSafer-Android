@@ -79,6 +79,16 @@ public abstract class ViewAdapter {
 	}
 
 	/**
+	 * Set a random id for the given view.
+	 *
+	 * @param view to have a new id
+	 */
+	public void randomId(View view) {
+		View adapted = this.getView();
+		view.setId(view.getId() + (adapted == null ? 0 : adapted.getId()) + this.hashCode());
+	}
+
+	/**
 	 * Create the view to start adapt.
 	 *
 	 * @param inflater to inflate the view with
