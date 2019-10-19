@@ -38,40 +38,40 @@ import lsafer.android.R;
 @EditEntry.Configurations(fieldConfig = EditNumber.FieldConfig.class)
 public class EditNumber extends EditEntry<EditNumber.FieldConfig, Object, Number> {
 	/**
-	 * The fix value.
+	 * The text-view that holds the description.
 	 */
-	protected int mFix;
-	/**
-	 * The value to split the numbers with on the number-picker.
-	 */
-	protected int mSplit;
-	/**
-	 * Minimum fixed value.
-	 */
-	protected int mFMin;
+	protected TextView mDescriptionTextView;
 	/**
 	 * Maximum fixed value.
 	 */
 	protected int mFMax;
 	/**
-	 * The number picker that holds the value of this.
+	 * Minimum fixed value.
 	 */
-	protected NumberPicker mValueNumberPicker;
+	protected int mFMin;
 	/**
-	 * The text-view that holds the description.
+	 * The fix value.
 	 */
-	protected TextView mDescriptionTextView;
+	protected int mFix;
 	/**
 	 * The text-view that holds the key.
 	 */
 	protected TextView mKeyTextView;
+	/**
+	 * The value to split the numbers with on the number-picker.
+	 */
+	protected int mSplit;
+	/**
+	 * The number picker that holds the value of this.
+	 */
+	protected NumberPicker mValueNumberPicker;
 
 	/**
 	 * Initialize this.
 	 *
 	 * @param context of application
-	 * @param groups to switch then attach this to
-	 * @param entry to be edited
+	 * @param groups  to switch then attach this to
+	 * @param entry   to be edited
 	 */
 	public EditNumber(Context context, ViewGroup[] groups, Map.Entry<Object, Number> entry) {
 		this.initialize(context, groups, entry);
@@ -155,7 +155,7 @@ public class EditNumber extends EditEntry<EditNumber.FieldConfig, Object, Number
 	public @interface FieldConfig {
 		/**
 		 * The resolution of the number to be put in.
-		 *
+		 * <p>
 		 * default 1 (aka the same number)
 		 * fixes should be tens and more than zero
 		 *

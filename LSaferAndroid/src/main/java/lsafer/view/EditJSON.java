@@ -54,8 +54,8 @@ public class EditJSON extends EditEntry<EditEntry.FieldConfig, String, Object> {
 	 * Initialize this.
 	 *
 	 * @param context of application
-	 * @param groups to switch then attach this to
-	 * @param entry to be edited
+	 * @param groups  to switch then attach this to
+	 * @param entry   to be edited
 	 */
 	public EditJSON(Context context, ViewGroup[] groups, Map.Entry<String, Object> entry) {
 		this.initialize(context, groups, entry);

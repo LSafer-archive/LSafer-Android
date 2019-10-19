@@ -30,10 +30,6 @@ import lsafer.android.R;
  */
 public class EditBoolean extends EditEntry<EditEntry.FieldConfig, Object, Boolean> {
 	/**
-	 * The switch that holds the value.
-	 */
-	protected Switch mValueSwitch;
-	/**
 	 * The text-view that holds the description.
 	 */
 	protected TextView mDescriptionTextView;
@@ -41,13 +37,17 @@ public class EditBoolean extends EditEntry<EditEntry.FieldConfig, Object, Boolea
 	 * The text-view that holds the key.
 	 */
 	protected TextView mKeyTextView;
+	/**
+	 * The switch that holds the value.
+	 */
+	protected Switch mValueSwitch;
 
 	/**
 	 * Initialize this.
 	 *
 	 * @param context of application
-	 * @param groups to switch then attach this to
-	 * @param entry to be edited
+	 * @param groups  to switch then attach this to
+	 * @param entry   to be edited
 	 */
 	public EditBoolean(Context context, ViewGroup[] groups, Map.Entry<Object, Boolean> entry) {
 		this.initialize(context, groups, entry);

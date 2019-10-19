@@ -61,12 +61,12 @@ public abstract class EditEntry<F extends Annotation, K, V> extends ViewAdapter 
 	/**
 	 * Get a new edit-entry instance for the given parameters.
 	 *
-	 * @param context  of application
-	 * @param groups to switch then attach this edit-entry to
-	 * @param entry    to be edited
-	 * @param <F> the type of the field configurations
-	 * @param <K> the type of keys
-	 * @param <V> the type of values
+	 * @param context of application
+	 * @param groups  to switch then attach this edit-entry to
+	 * @param entry   to be edited
+	 * @param <F>     the type of the field configurations
+	 * @param <K>     the type of keys
+	 * @param <V>     the type of values
 	 * @return a new instance for the given parameters
 	 */
 	public static <F extends Annotation, K, V> EditEntry<F, K, V> newInstance(Context context, ViewGroup[] groups, Map.Entry<K, V> entry) {
@@ -100,7 +100,8 @@ public abstract class EditEntry<F extends Annotation, K, V> extends ViewAdapter 
 
 			this.mKeyDescRes = context.getResources().getStringArray(this.mBaseFieldConfig.res());
 		} else {
-			this.mKeyDescRes = new String[]{String.valueOf(entry.getKey()), context.getResources().getString(R.string.plh__default_value, String.valueOf(entry.getValue()))};
+			this.mKeyDescRes = new String[]{String.valueOf(entry.getKey()),
+											context.getResources().getString(R.string.plh__default_value, String.valueOf(entry.getValue()))};
 		}
 
 		this.initialize(context, groups[this.mBaseFieldConfig == null ? 0 : this.mBaseFieldConfig.group()]);
@@ -161,7 +162,7 @@ public abstract class EditEntry<F extends Annotation, K, V> extends ViewAdapter 
 
 		/**
 		 * What the class to be asked about is this entry is triggered or not.
-		 *
+		 * <p>
 		 * Note: the class should have a static method named 'isTriggered' and a parameters of (Map.Entry) and returns boolean
 		 * ex.
 		 * <pre>

@@ -41,9 +41,13 @@ import lsafer.util.Arrays;
 @EditEntry.Configurations(fieldConfig = EditString.FieldConfig.class)
 public class EditString extends EditEntry<EditString.FieldConfig, Object, String> {
 	/**
-	 * The possible values sorted as defined on the field config.
+	 * The text-view that holds the description.
 	 */
-	protected String[] mValues;
+	protected TextView mDescriptionTextView;
+	/**
+	 * The text-view that holds the key.
+	 */
+	protected TextView mKeyTextView;
 	/**
 	 * The resources strings for the possible values.
 	 * It asserts that this strings are sorted the same as the possible values
@@ -54,20 +58,16 @@ public class EditString extends EditEntry<EditString.FieldConfig, Object, String
 	 */
 	protected TextView mValueTextView;
 	/**
-	 * The text-view that holds the description.
+	 * The possible values sorted as defined on the field config.
 	 */
-	protected TextView mDescriptionTextView;
-	/**
-	 * The text-view that holds the key.
-	 */
-	protected TextView mKeyTextView;
+	protected String[] mValues;
 
 	/**
 	 * Initialize this.
 	 *
 	 * @param context of application
-	 * @param groups to switch then attach this to
-	 * @param entry to be edited
+	 * @param groups  to switch then attach this to
+	 * @param entry   to be edited
 	 */
 	public EditString(Context context, ViewGroup[] groups, Map.Entry<Object, String> entry) {
 		this.initialize(context, groups, entry);
@@ -148,18 +148,18 @@ public class EditString extends EditEntry<EditString.FieldConfig, Object, String
 	@Target(ElementType.FIELD)
 	public @interface FieldConfig {
 		/**
-		 * The values for each item in the {@link #res()} array.
-		 *
-		 * @return the values for the resources array
-		 */
-		String[] values();
-
-		/**
 		 * The resources string array for the values.
 		 *
 		 * @return the resource string array for the values
 		 */
 		@ArrayRes
 		int res();
+
+		/**
+		 * The values for each item in the {@link #res()} array.
+		 *
+		 * @return the values for the resources array
+		 */
+		String[] values();
 	}
 }
