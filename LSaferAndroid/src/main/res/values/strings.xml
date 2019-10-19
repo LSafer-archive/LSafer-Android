@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="sym__json" translatable="false">JSON</string>
+	<string name="any">Any</string>
+	<string name="plh__default_value">default value: %s</string>
+	<string name="confirm">Confirm</string>
+</resources>

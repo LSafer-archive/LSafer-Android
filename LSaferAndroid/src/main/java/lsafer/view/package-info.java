@@ -12,7 +12,7 @@
  * Useful utils dealing with views.
  *
  * @author LSaferSE
- * @version 2 alpha (06-Sep-19)
+ * @version 2 release (19-Oct-19)
  * @since 29-Jul-19
  */
 package lsafer.view;

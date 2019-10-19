@@ -12,7 +12,7 @@
  * Useful utils.
  *
  * @author LSaferSE
- * @version 1 alpha (06-Sep-19)
- * @since 06-Sep-19
+ * @version 2 release (19-Oct-2019)
+ * @since 06-Sep-2019
  */
 package lsafer.util;

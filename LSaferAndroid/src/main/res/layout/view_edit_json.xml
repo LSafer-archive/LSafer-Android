@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	android:layout_height="wrap_content"
+	android:layout_width="match_parent"
+	android:orientation="vertical"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<View style="@style/kroov_split" android:layout_margin="5dp"/>
+	
+	<LinearLayout style="@style/kroov_drawerx">
+		<TextView
+			android:textAlignment="viewStart"
+			android:id="@+id/key"
+			style="@style/kroov_title"
+			android:fontFamily="sans-serif"
+			tools:text="Key"/>
+		<TextView
+			android:textAlignment="viewStart"
+			android:id="@+id/type"
+			android:text="@string/any"
+			style="@style/kroov_description"
+			android:fontFamily="sans-serif-black"
+			tools:text="Boolean"/>
+		<TextView
+			android:fontFamily="sans-serif-medium"
+			android:textAlignment="viewStart"
+			android:id="@+id/description"
+			style="@style/kroov_description"
+			tools:text="A description for this key.\nThis key is a good key."/>
+		
+		<EditText
+			android:layout_marginTop="15dp"
+			style="@style/kroov_name"
+			android:background="@drawable/kroov_round_silk_dark"
+			android:textColor="?android:colorPrimary"
+			android:padding="10dp"
+			android:layout_height="wrap_content"
+			android:id="@+id/value"
+			android:hint="@string/sym__json"
+			android:gravity="center"
+			android:inputType="text"
+			android:importantForAutofill="no" />
+	</LinearLayout>
+</LinearLayout>

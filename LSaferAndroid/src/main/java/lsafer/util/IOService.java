@@ -37,27 +37,26 @@ public abstract class IOService<R, K, V> extends Service implements Serializable
 	/**
 	 * The secondary container.
 	 */
-	private transient Map<K, JSObject.Entry<K, V>> entries = new HashMap<>();
-
+	protected transient Map<K, JSObject.Entry<K, V>> mEntries = new HashMap<>();
 	/**
 	 * The 3rd IO-container's remote.
 	 */
-	protected transient R remote;
+	protected transient R mRemote;
 
 	@Override
 	public Map<K, JSObject.Entry<K, V>> entries() {
-		return this.entries;
+		return this.mEntries;
 	}
 
 	@Override
 	public R remote() {
-		return remote;
+		return mRemote;
 	}
 
 	@Override
 	public R remote(R remote) {
 		R old = this.remote();
-		this.remote = remote;
+		this.mRemote = remote;
 		return old;
 	}
 
@@ -96,7 +95,7 @@ public abstract class IOService<R, K, V> extends Service implements Serializable
 	 * @throws IOException            if an I/O error occurs.
 	 */
 	private void readObject(ObjectInputStream stream) throws ClassNotFoundException, IOException {
-		this.entries = this.entries == null ? new HashMap<>() : this.entries;
+		this.mEntries = this.mEntries == null ? new HashMap<>() : this.mEntries;
 		int size = stream.readInt();
 
 		for (int i = 0; i < size; i++) {

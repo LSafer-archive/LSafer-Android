@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	android:layout_height="wrap_content"
+	android:layout_width="match_parent"
+	android:orientation="vertical"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<View style="@style/kroov_split" android:layout_margin="5dp"/>
+	
+	<LinearLayout style="@style/kroov_box">
+		
+		<LinearLayout style="@style/kroov_drawer">
+			<TextView
+				android:id="@+id/key"
+				android:textAlignment="viewStart"
+				style="@style/kroov_title"
+				android:fontFamily="sans-serif"
+				tools:text="Key"/>
+			<TextView
+				android:textAlignment="viewStart"
+				android:fontFamily="sans-serif-medium"
+				android:id="@+id/description"
+				style="@style/kroov_description"
+				tools:text="Description"/>
+		</LinearLayout>
+		
+		<NumberPicker
+			style="@style/kroov_quarter"
+			android:theme="@style/KroovNumberPickerTheme"
+			android:layout_marginTop="10dp"
+			android:layout_height="60dp"
+			android:layout_width="match_parent"
+			android:layout_weight="2"
+			android:id="@+id/value"
+			tools:ignore="InefficientWeight" />
+	</LinearLayout>
+</LinearLayout>

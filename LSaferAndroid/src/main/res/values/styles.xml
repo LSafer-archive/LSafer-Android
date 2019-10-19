@@ -24,6 +24,14 @@
 		<item name="android:width">3000dp</item>
 	</style>
 	
+	<style name="KroovNumberPickerTheme">
+		<item name="colorControlNormal">#00000000</item>
+		<item name="android:editTextColor">?android:colorAccent</item>
+		<item name="android:textColor">?android:colorPrimary</item>
+		<item name="android:textSize">16sp</item>
+		<item name="android:fontFamily">sans-serif-black</item>
+	</style>
+	
 	<style name="kroov_titlex">
 		<item name="android:fontFamily">serif</item>
 		<item name="android:textSize">25sp</item>
