@@ -69,17 +69,17 @@ public abstract class EditEntry<F extends Annotation, K, V> extends ViewAdapter 
 	 * @param <V> the type of values
 	 * @return a new instance for the given parameters
 	 */
-	public static <F extends Annotation, K, V> EditEntry<F, K, V> newInstance(Context context, ViewGroup[] groups, JSObject.Entry<K, V> entry) {
-		if (entry.field == null)
-			return (EditEntry<F, K, V>) new EditJSON(context, groups, (Map.Entry<String, Object>) entry);
-		try {
-			//noinspection ConstantConditions,unchecked
-			return entry.field.getAnnotation(FieldConfig.class).editor()
-					.getConstructor(Context.class, ViewGroup[].class, JSObject.Entry.class)
-					.newInstance(context, groups, entry);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+	public static <F extends Annotation, K, V> EditEntry<F, K, V> newInstance(Context context, ViewGroup[] groups, Map.Entry<K, V> entry) {
+		if (entry instanceof JSObject.Entry && ((JSObject.Entry<K, V>) entry).field != null)
+			try {
+				//noinspection ConstantConditions,unchecked
+				return ((JSObject.Entry<K, V>) entry).field.getAnnotation(FieldConfig.class).editor()
+						.getConstructor(Context.class, ViewGroup[].class, Map.Entry.class)
+						.newInstance(context, groups, entry);
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		else return (EditEntry<F, K, V>) new EditJSON(context, groups, (Map.Entry<String, Object>) entry);
 	}
 
 	/**

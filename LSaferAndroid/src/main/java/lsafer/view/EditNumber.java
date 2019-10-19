@@ -24,9 +24,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
+import java.util.Map;
 
 import lsafer.android.R;
-import lsafer.util.JSObject;
 
 /**
  * An edit-entry that allows the user to chose a number as a preference.
@@ -73,7 +73,7 @@ public class EditNumber extends EditEntry<EditNumber.FieldConfig, Object, Number
 	 * @param groups to switch then attach this to
 	 * @param entry to be edited
 	 */
-	public EditNumber(Context context, ViewGroup[] groups, JSObject.Entry<Object, Number> entry) {
+	public EditNumber(Context context, ViewGroup[] groups, Map.Entry<Object, Number> entry) {
 		this.initialize(context, groups, entry);
 	}
 

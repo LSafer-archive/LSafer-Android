@@ -17,8 +17,9 @@ import android.view.ViewGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.util.Map;
+
 import lsafer.android.R;
-import lsafer.util.JSObject;
 
 /**
  * An edit-entry that allows the user to toggle between boolean data.
@@ -48,7 +49,7 @@ public class EditBoolean extends EditEntry<EditEntry.FieldConfig, Object, Boolea
 	 * @param groups to switch then attach this to
 	 * @param entry to be edited
 	 */
-	public EditBoolean(Context context, ViewGroup[] groups, JSObject.Entry<Object, Boolean> entry) {
+	public EditBoolean(Context context, ViewGroup[] groups, Map.Entry<Object, Boolean> entry) {
 		this.initialize(context, groups, entry);
 	}
 
