@@ -69,12 +69,13 @@ public class EditNumber extends EditEntry<EditNumber.FieldConfig, Object, Number
 	/**
 	 * Initialize this.
 	 *
-	 * @param context of application
-	 * @param groups  to switch then attach this to
-	 * @param entry   to be edited
+	 * @param context  of application
+	 * @param groups   to switch then attach this to
+	 * @param entry    to be edited
+	 * @param listener to call as a listener
 	 */
-	public EditNumber(Context context, ViewGroup[] groups, Map.Entry<Object, Number> entry) {
-		this.initialize(context, groups, entry);
+	public EditNumber(Context context, ViewGroup[] groups, Map.Entry<Object, Number> entry, EventListener listener) {
+		this.initialize(context, groups, entry, listener);
 	}
 
 	@Override
@@ -95,12 +96,12 @@ public class EditNumber extends EditEntry<EditNumber.FieldConfig, Object, Number
 
 		this.mKeyTextView.setText(this.mKeyDescRes[0]);
 		this.mDescriptionTextView.setText(this.mKeyDescRes[1]);
-		this.mValueNumberPicker.setValue(this.position(this.mEntry.getValue()));
+		this.mValueNumberPicker.setValue(this.position(this.getValue()));
 //		this.value.setWrapSelectorWheel(false);
 		this.mValueNumberPicker.setMinValue(this.mFMin / this.mSplit);
 		this.mValueNumberPicker.setMaxValue(this.mFMax / this.mSplit);
 
-		this.mValueNumberPicker.setOnValueChangedListener((picker, oi, ni) -> this.mEntry.setValue(this.value(ni)));
+		this.mValueNumberPicker.setOnValueChangedListener((picker, oi, ni) -> this.setValue(this.value(ni)));
 
 		if (this.mFieldConfig.res() != -1)
 			this.mValueNumberPicker.setDisplayedValues(this.getContext().getResources().getStringArray(this.mFieldConfig.res()));

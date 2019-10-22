@@ -26,7 +26,7 @@ android {
 }
 
 dependencies {
-    compileOnly 'com.github.LSaferSE:LSafer:1.2.3-beta9'
+    compileOnly 'com.github.LSaferSE:LSafer:1.2.4-beta8'
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     testImplementation 'junit:junit:4.12'

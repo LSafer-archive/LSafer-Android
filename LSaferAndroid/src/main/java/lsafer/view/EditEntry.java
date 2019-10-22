@@ -22,7 +22,6 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import lsafer.android.R;
@@ -57,40 +56,63 @@ public abstract class EditEntry<F extends Annotation, K, V> extends ViewAdapter 
 	 * The resources strings for this entry (gotten from {@link FieldConfig#res()}).
 	 */
 	protected String[] mKeyDescRes;
+	/**
+	 * The actions listener of this.
+	 */
+	protected EventListener mListener;
 
 	/**
 	 * Get a new edit-entry instance for the given parameters.
 	 *
-	 * @param context of application
-	 * @param groups  to switch then attach this edit-entry to
-	 * @param entry   to be edited
-	 * @param <F>     the type of the field configurations
-	 * @param <K>     the type of keys
-	 * @param <V>     the type of values
+	 * @param context  of application
+	 * @param groups   to switch then attach this edit-entry to
+	 * @param entry    to be edited
+	 * @param listener to call as a listener
 	 * @return a new instance for the given parameters
 	 */
-	public static <F extends Annotation, K, V> EditEntry<F, K, V> newInstance(Context context, ViewGroup[] groups, Map.Entry<K, V> entry) {
-		if (entry instanceof JSObject.Entry && ((JSObject.Entry<K, V>) entry).field != null)
+	public static EditEntry<?, ?, ?> newInstance(Context context, ViewGroup[] groups, Map.Entry<?, ?> entry, EventListener listener) {
+		if (entry instanceof JSObject.Entry && ((JSObject.Entry) entry).field != null)
 			try {
-				//noinspection ConstantConditions,unchecked
-				return ((JSObject.Entry<K, V>) entry).field.getAnnotation(FieldConfig.class).editor()
-						.getConstructor(Context.class, ViewGroup[].class, Map.Entry.class)
-						.newInstance(context, groups, entry);
+				//noinspection ConstantConditions
+				return ((JSObject.Entry) entry).field.getAnnotation(FieldConfig.class).editor()
+						.getConstructor(Context.class, ViewGroup[].class, Map.Entry.class, EventListener.class)
+						.newInstance(context, groups, entry, listener);
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
-		else return (EditEntry<F, K, V>) new EditJSON(context, groups, (Map.Entry<String, Object>) entry);
+		else return new EditJSON(context, groups, (Map.Entry<String, Object>) entry, listener);
+	}
+
+	/**
+	 * Get the value of the entry of this.
+	 *
+	 * @return the value
+	 */
+	public V getValue() {
+		return this.mEntry.getValue();
+	}
+
+	/**
+	 * Set the value to the entry of this.
+	 *
+	 * @param value to be set
+	 */
+	public void setValue(V value) {
+		this.mEntry.setValue(value);
+		this.mListener.onEntryChanged(this, value);
 	}
 
 	/**
 	 * Initialize this.
 	 *
-	 * @param context of application
-	 * @param groups  to switch then attach this to
-	 * @param entry   to be edited by this
+	 * @param context  of application
+	 * @param groups   to switch then attach this to
+	 * @param entry    to be edited by this
+	 * @param listener to call as a listener
 	 */
-	final public void initialize(Context context, ViewGroup[] groups, Map.Entry<K, V> entry) {
+	final public void initialize(Context context, ViewGroup[] groups, Map.Entry<K, V> entry, EventListener listener) {
 		this.mEntry = entry;
+		this.mListener = listener;
 
 		if (entry instanceof JSObject.Entry && ((JSObject.Entry) entry).field != null) {
 			this.mBaseFieldConfig = ((JSObject.Entry) entry).field.getAnnotation(FieldConfig.class);
@@ -106,16 +128,17 @@ public abstract class EditEntry<F extends Annotation, K, V> extends ViewAdapter 
 
 		this.initialize(context, groups[this.mBaseFieldConfig == null ? 0 : this.mBaseFieldConfig.group()]);
 
-		if (this.mBaseFieldConfig != null) {
-			if (this.mBaseFieldConfig.trigger() != Object.class)
-				try {
-					boolean triggered = (boolean) this.mBaseFieldConfig.trigger().getMethod("isTriggered", Map.Entry.class).invoke(null, this.mEntry);
+		if (this.mListener != null && !this.mListener.isEntryTriggered(this))
+			this.getView().setVisibility(View.GONE);
+	}
 
-					if (!triggered) this.getView().setVisibility(View.GONE);
-				} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-					throw new RuntimeException(e);
-				}
-		}
+	/**
+	 * Set the listener of this.
+	 *
+	 * @param listener the new listener
+	 */
+	public void setListener(EventListener listener) {
+		this.mListener = listener;
 	}
 
 	/**
@@ -131,6 +154,30 @@ public abstract class EditEntry<F extends Annotation, K, V> extends ViewAdapter 
 		 * @return the field config type of the annotated edit-entry
 		 */
 		Class<? extends Annotation> fieldConfig() default FieldConfig.class;
+	}
+
+	/**
+	 * An interface for an object to tell this edit-entry what to do when specific events happens.
+	 */
+	public interface EventListener {
+		/**
+		 * Check whether the given entry is triggered to be visible to the user or not.
+		 *
+		 * @param entry to be checked
+		 * @return whether the given entry is triggered or not
+		 */
+		default boolean isEntryTriggered(EditEntry<?, ?, ?> entry) {
+			return true;
+		}
+
+		/**
+		 * Get called when an entry get changed.
+		 *
+		 * @param entry the entry that have been changed
+		 * @param value the new value
+		 */
+		default void onEntryChanged(EditEntry<?, ?, ?> entry, Object value) {
+		}
 	}
 
 	/**
@@ -159,20 +206,5 @@ public abstract class EditEntry<F extends Annotation, K, V> extends ViewAdapter 
 		 * @return the resource id
 		 */
 		@ArrayRes int res();
-
-		/**
-		 * What the class to be asked about is this entry is triggered or not.
-		 * <p>
-		 * Note: the class should have a static method named 'isTriggered' and a parameters of (Map.Entry) and returns boolean
-		 * ex.
-		 * <pre>
-		 * public static boolean isTriggered(Map.Entry entry) {
-		 * 	return !entry.getValue().equals("hide me!");
-		 * }
-		 * </pre>
-		 *
-		 * @return the class to ask weather the annotated entry is triggered or not
-		 */
-		Class<?> trigger() default Object.class;
 	}
 }

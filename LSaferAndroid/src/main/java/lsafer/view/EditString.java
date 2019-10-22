@@ -65,12 +65,13 @@ public class EditString extends EditEntry<EditString.FieldConfig, Object, String
 	/**
 	 * Initialize this.
 	 *
-	 * @param context of application
-	 * @param groups  to switch then attach this to
-	 * @param entry   to be edited
+	 * @param context  of application
+	 * @param groups   to switch then attach this to
+	 * @param entry    to be edited
+	 * @param listener to call as a listener
 	 */
-	public EditString(Context context, ViewGroup[] groups, Map.Entry<Object, String> entry) {
-		this.initialize(context, groups, entry);
+	public EditString(Context context, ViewGroup[] groups, Map.Entry<Object, String> entry, EventListener listener) {
+		this.initialize(context, groups, entry, listener);
 	}
 
 	@Override
@@ -89,7 +90,7 @@ public class EditString extends EditEntry<EditString.FieldConfig, Object, String
 
 		this.mKeyTextView.setText(this.mKeyDescRes[0]);
 		this.mDescriptionTextView.setText(this.mKeyDescRes[1]);
-		this.mValueTextView.setText(this.resource(this.mEntry.getValue()));
+		this.mValueTextView.setText(this.resource(this.getValue()));
 
 		this.mValueTextView.setOnLongClickListener(v -> {
 			LinearLayout layout = new LinearLayout(this.getContext());
@@ -104,14 +105,14 @@ public class EditString extends EditEntry<EditString.FieldConfig, Object, String
 			});
 			text.setGravity(Gravity.CENTER);
 			text.setBackground(null);
-			text.setText(this.mEntry.getValue());
+			text.setText(this.getValue());
 			text.requestFocus();
 
 			new AlertDialog.Builder(this.getContext(), R.style.KroovAlertDialogTheme)
 					.setView(layout)
 					.setPositiveButton(R.string.confirm, (d, w) -> {
 						String nv = text.getText().toString();
-						this.mEntry.setValue(nv);
+						this.setValue(nv);
 						this.mValueTextView.setText(nv);
 					})
 					.show();
@@ -120,7 +121,7 @@ public class EditString extends EditEntry<EditString.FieldConfig, Object, String
 		this.mValueTextView.setOnClickListener(v ->
 				new AlertDialog.Builder(this.getContext(), R.style.KroovAlertDialogTheme)
 						.setItems(this.mStrings, (d, i) -> {
-							this.mEntry.setValue(this.mValues[i]);
+							this.setValue(this.mValues[i]);
 							this.mValueTextView.setText(this.mStrings[i]);
 						})
 						.show()

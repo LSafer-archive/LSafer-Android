@@ -34,10 +34,9 @@ public class SectionView extends ViewAdapter {
 	 */
 	protected TextView mLabel;
 	/**
-	 * The title resources.
+	 * The title.
 	 */
-	@StringRes
-	protected int mLabelRes;
+	protected String mLabelRes;
 	/**
 	 * The layout contains {@link EditEntry entry-edit-views} on it.
 	 */
@@ -51,18 +50,22 @@ public class SectionView extends ViewAdapter {
 	 * @param label   resource id for this secession
 	 */
 	public SectionView(Context context, ViewGroup parent, @StringRes int label) {
-		this.mLabelRes = label;
+		this.mLabelRes = context.getString(label);
 		this.initialize(context, parent);
 	}
 
 	/**
-	 * Get the layout of this section.
+	 * init this.
 	 *
-	 * @return the layout
+	 * @param context of application
+	 * @param parent  to be attached to
+	 * @param label   name of this secession
 	 */
-	public LinearLayout getLayout() {
-		return this.mLayout;
+	public SectionView(Context context, ViewGroup parent, String label) {
+		this.mLabelRes = label;
+		this.initialize(context, parent);
 	}
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent) {
@@ -97,5 +100,14 @@ public class SectionView extends ViewAdapter {
 
 		parent.addView(view);
 		return view;
+	}
+
+	/**
+	 * Get the layout of this section.
+	 *
+	 * @return the layout
+	 */
+	public LinearLayout getLayout() {
+		return this.mLayout;
 	}
 }

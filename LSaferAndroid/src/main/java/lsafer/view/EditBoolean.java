@@ -45,12 +45,13 @@ public class EditBoolean extends EditEntry<EditEntry.FieldConfig, Object, Boolea
 	/**
 	 * Initialize this.
 	 *
-	 * @param context of application
-	 * @param groups  to switch then attach this to
-	 * @param entry   to be edited
+	 * @param context  of application
+	 * @param groups   to switch then attach this to
+	 * @param entry    to be edited
+	 * @param listener to call as a listener
 	 */
-	public EditBoolean(Context context, ViewGroup[] groups, Map.Entry<Object, Boolean> entry) {
-		this.initialize(context, groups, entry);
+	public EditBoolean(Context context, ViewGroup[] groups, Map.Entry<Object, Boolean> entry, EventListener listener) {
+		this.initialize(context, groups, entry, listener);
 	}
 
 	@Override
@@ -62,9 +63,9 @@ public class EditBoolean extends EditEntry<EditEntry.FieldConfig, Object, Boolea
 
 		this.mKeyTextView.setText(this.mKeyDescRes[0]);
 		this.mDescriptionTextView.setText(this.mKeyDescRes[1]);
-		this.mValueSwitch.setChecked(this.mEntry.getValue());
+		this.mValueSwitch.setChecked(this.getValue());
 
-		this.mValueSwitch.setOnClickListener(v -> this.mEntry.setValue(this.mValueSwitch.isChecked()));
+		this.mValueSwitch.setOnClickListener(v -> this.setValue(this.mValueSwitch.isChecked()));
 
 		parent.addView(view);
 		return view;

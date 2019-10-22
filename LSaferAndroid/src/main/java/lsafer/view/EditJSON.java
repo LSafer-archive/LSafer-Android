@@ -53,12 +53,13 @@ public class EditJSON extends EditEntry<EditEntry.FieldConfig, String, Object> {
 	/**
 	 * Initialize this.
 	 *
-	 * @param context of application
-	 * @param groups  to switch then attach this to
-	 * @param entry   to be edited
+	 * @param context  of application
+	 * @param groups   to switch then attach this to
+	 * @param entry    to be edited
+	 * @param listener to call as a listener
 	 */
-	public EditJSON(Context context, ViewGroup[] groups, Map.Entry<String, Object> entry) {
-		this.initialize(context, groups, entry);
+	public EditJSON(Context context, ViewGroup[] groups, Map.Entry<String, Object> entry, EventListener listener) {
+		this.initialize(context, groups, entry, listener);
 	}
 
 	@Override
@@ -71,13 +72,13 @@ public class EditJSON extends EditEntry<EditEntry.FieldConfig, String, Object> {
 
 		this.mKeyTextView.setText(this.mKeyDescRes[0]);
 		this.mDescriptionTextView.setText(this.mKeyDescRes[1]);
-		this.mValueTextView.setText(JSON.Stringify(this.mEntry.getValue()));
+		this.mValueTextView.setText(JSON.Stringify(this.getValue()));
 
 		this.mValueTextView.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void afterTextChanged(Editable editable) {
 				try {
-					EditJSON.this.mEntry.setValue(JSON.instance.parse(mValueTextView.getText().toString()));
+					EditJSON.this.setValue(JSON.instance.parse(mValueTextView.getText().toString()));
 				} catch (Exception ignored) {
 				}
 			}
