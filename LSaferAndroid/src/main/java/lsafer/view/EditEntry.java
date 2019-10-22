@@ -99,7 +99,8 @@ public abstract class EditEntry<F extends Annotation, K, V> extends ViewAdapter 
 	 */
 	public void setValue(V value) {
 		this.mEntry.setValue(value);
-		this.mListener.onEntryChanged(this, value);
+		if (this.mListener != null)
+			this.mListener.onEntryChanged(this, value);
 	}
 
 	/**
