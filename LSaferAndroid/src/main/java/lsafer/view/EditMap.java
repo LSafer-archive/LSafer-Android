@@ -11,7 +11,6 @@
 package lsafer.view;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,20 +18,19 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.ArrayRes;
 import androidx.annotation.StringRes;
-import androidx.fragment.app.Fragment;
 
 import java.util.Map;
 
 import lsafer.android.R;
 
 /**
- * A fragment to edit maps.
+ * A view-adapter to edit maps.
  *
  * @author LSaferSE
  * @version 1 beta (22-Oct-2019)
  * @since 22-Oct-2019
  */
-public class EditMapFragment extends Fragment implements Refreshable {
+public class EditMap extends ViewAdapter implements Refreshable {
 	/**
 	 * All active edit-entries objects of this.
 	 */
@@ -59,7 +57,7 @@ public class EditMapFragment extends Fragment implements Refreshable {
 	protected SectionView[] mSections;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container) {
 		View view = inflater.inflate(R.layout.fragment_edit_map, container);
 		this.mSectionsLayout = view.findViewById(R.id.sections);
 		return view;
@@ -87,7 +85,7 @@ public class EditMapFragment extends Fragment implements Refreshable {
 	 * @param listener to be set
 	 * @return this
 	 */
-	public EditMapFragment setListener(EditEntry.EventListener listener) {
+	public EditMap setListener(EditEntry.EventListener listener) {
 		this.mListener = listener;
 
 		if (this.mEditEntries != null)
@@ -105,7 +103,7 @@ public class EditMapFragment extends Fragment implements Refreshable {
 	 * @param map the map
 	 * @return this
 	 */
-	public EditMapFragment setMap(Map<?, ?> map) {
+	public EditMap setMap(Map<?, ?> map) {
 		this.mMap = map;
 		return this;
 	}
@@ -118,7 +116,7 @@ public class EditMapFragment extends Fragment implements Refreshable {
 	 * @param sections to be set (sorted)
 	 * @return this
 	 */
-	public EditMapFragment setSections(@StringRes int[] sections) {
+	public EditMap setSections(@StringRes int[] sections) {
 		this.mSectionsLayout.removeAllViews();
 		this.mSections = new SectionView[sections.length];
 		this.mGroups = new ViewGroup[sections.length];
@@ -137,7 +135,7 @@ public class EditMapFragment extends Fragment implements Refreshable {
 	 * @param sections to be set (sorted)
 	 * @return this
 	 */
-	public EditMapFragment setSections(String[] sections) {
+	public EditMap setSections(String[] sections) {
 		this.mSectionsLayout.removeAllViews();
 		this.mSections = new SectionView[sections.length];
 		this.mGroups = new ViewGroup[sections.length];
@@ -156,7 +154,7 @@ public class EditMapFragment extends Fragment implements Refreshable {
 	 * @param sections to be set (sorted)
 	 * @return this
 	 */
-	public EditMapFragment setSections(@ArrayRes int sections) {
+	public EditMap setSections(@ArrayRes int sections) {
 		String[] sections1 = this.getContext().getResources().getStringArray(sections);
 		this.mSectionsLayout.removeAllViews();
 		this.mSections = new SectionView[sections1.length];
